@@ -1,5 +1,13 @@
 import webbrowser
 import random
+from random import choice
+from pytube import YouTube
+import keyboard
+import pyautogui as auto
+import time
+import requests
+
+
 def iptv():
     link = "https://liad07.github.io/crack-apps.github.io/assets/iptv/iptv%20project/"
     chanel = input('please enter the chanel \n')
@@ -120,6 +128,7 @@ def iptv():
         print("the link is not found")
         print("to see optins for bot \nhttps://github.com/liad07/iptv#readme")
 
+
 def cocacola():
     num = 0
     x = 0
@@ -169,6 +178,7 @@ def cocacola():
             z = base + achdot + asarot + meot + alfim + "5"
             print(int(z))
 
+
 def downloader_tools():
     def font_downloader():
         font = ""
@@ -215,6 +225,24 @@ def downloader_tools():
         webbrowser.open(allsoftwares)
         webbrowser.open(google)
 
+    def youtube_downloader():
+        link = input('enter link\n')
+        res = input('enter quality 480/720\n')
+
+        YouTube(f'{link}').streams.filter(progressive=True, file_extension='mp4', res=f"{res}p").first().download()
+        print("download is done")
+        title = YouTube(f'{link}').title
+        print(f"title of video : {title}")
+        channel = YouTube(f'{link}').channel_url
+        print(f"url of channel : {channel}")
+        print(f"url of video: {link}")
+        print(f"quality of video: {res}p")
+        views = YouTube(f'{link}').views
+        print(f"views of video: {views}")
+        des = YouTube(f'{link}').description
+        print(f"the local link of the video is {title}.mp4")
+        print(f"description of video : {des}")
+
     def media_downloader():
         def movies():
             base = "https://torrentgalaxy.to/torrents.php?search="
@@ -239,7 +267,8 @@ def downloader_tools():
     print("[1] font_downloader")
     print("[2] game_downloader")
     print("[3] app_downloader")
-    print("[4] media_downloader")
+    print("[4] youtube_downloader")
+    print("[5] media_downloader")
     str1 = input('enter num of  project  \n')
     if str1 == "1":
         font_downloader()
@@ -248,7 +277,120 @@ def downloader_tools():
     if str1 == "3":
         app_downloader()
     if str1 == "4":
+        youtube_downloader()
+    if str1 == "5":
         media_downloader()
+
+
+def other_tools():
+    def auto_clicker():
+        while True:
+            auto.click()
+            if keyboard.is_pressed('space'):
+                break
+
+    def check_web():
+        url = input('enter url\n')
+        time1 = input('Every once in a while you want to check the integrity of the site (Enter number of minutes)\n')
+        time1 = int(time1)
+        r = requests.get(url)
+        x = "liad"
+        y = 1
+        z = 0
+        counter = 0
+
+        while y == 1:
+            if r.status_code == 200:
+                print("web is online")
+            else:
+                x = str(r)
+                print(r.status_code)
+                webbrowser.open("whats mean" + x)
+            time.sleep(time1 * 60)
+            z = z + 1
+            print(f"The site has been checked {z} times")
+
+    def gen_password():
+        digits = '0123456789'
+        chars = 'abcdefghijklmn' \
+                'opqrstuvwxyz'
+        up = chars.upper()
+        speical = '!@#$%^&*_'
+        all = digits + chars + up + speical
+        password = ''.join(choice(all) for i in range(8))
+        print(password)
+        keyboard.wait('space')
+        print('enter space to continue')
+
+    def google_extension():
+        base = "https://chrome.google.com/webstore/detail/"
+        extension_id = input("enter a extension id\n")
+        webbrowser.open(base + extension_id)
+
+    def iptocountry():
+        x = input('enter ip\n')
+        webbrowser.open(f"https://api.ip2country.info/ip?{x}")
+
+    def mikud():
+        city = input('enter a city\n')
+        street = input('enter a street\n')
+        numhouse = input('enter num of the house\n')
+        join = input('Enter login\n')
+        webbrowser.open(
+            f"https://services.israelpost.co.il/zip_data.nsf/SearchZip?OpenAgent&Location={city}&POB=&Street={street}&House={numhouse}&Entrance={join}")
+        print(city, street, numhouse, join)
+
+    def translate():
+        heb = "https://translate.google.co.il/?hl=iw&sl=iw&tl=en&text="
+        eng = "https://translate.google.co.il/?hl=iw&sl=en&tl=iw&text="
+        rec = "https://translate.google.co.il/?hl=iw&sl=auto&tl=iw&text="
+        var = input('please select type eng/heb/idk \n')
+
+        amen = input('please enter word \n')
+        if (var == "heb"):
+            webbrowser.open(heb + amen + "&op=translate")
+        if (var == "eng"):
+            webbrowser.open(eng + amen + "&op=translate")
+        if (var == "idk"):
+            webbrowser.open(rec + amen + "&op=translate")
+
+    def wether():
+        x = input('enter a city\n')
+        webbrowser.open(f"https://weatherdbi.herokuapp.com/data/weather/{x}")
+
+    def whatsappsend():
+        base = "https://api.whatsapp.com/send?text="
+        text = input("pleasse enter text to send\n")
+        webbrowser.open(base + text)
+
+    print("[1] auto_clicker")
+    print("[2] check_web")
+    print("[3] gen_password")
+    print("[4] google_extension")
+    print("[5] iptocountry")
+    print("[6] mikud")
+    print("[7] translate")
+    print("[8] wether")
+    print("[9] whatsappsend")
+    str1 = input('enter num of  project  \n')
+    if str1 == "1":
+        auto_clicker()
+    if str1 == "2":
+        check_web()
+    if str1 == "3":
+        gen_password()
+    if str1 == "4":
+        google_extension()
+    if str1 == "5":
+        iptocountry()
+    if str1 == "6":
+        mikud()
+    if str1 == "7":
+        translate()
+    if str1 == "8":
+        wether()
+    if str1 == "9":
+        whatsappsend()
 
 
 def github():
@@ -259,17 +401,21 @@ def github():
     webbrowser.open(str)
     webbrowser.open(str1)
 
+
 print("[1] iptvbot")
 print("[2] cocacola genrator")
 print("[3] downloader_tools")
-print("[4] github repo\n")
+print("[4] other_tools")
+print("[5] github repo\n")
 str1 = input('enter num of project project  \n')
 
-if str1=="1":
+if str1 == "1":
     iptv()
-if str1=="2":
+if str1 == "2":
     cocacola()
-if str1=="3":
+if str1 == "3":
     downloader_tools()
-if str1=="4":
+if str1 == "4":
+    other_tools()
+if str1 == "5":
     github()
