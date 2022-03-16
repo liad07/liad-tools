@@ -11,3 +11,4 @@ pip install keyboard
 pip install pyautogui
 pip install time
 pip install requests
+
