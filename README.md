@@ -12,9 +12,12 @@ pip install pyautogui
 pip install time                                                                                                                                                             
 pip install requests                                                                                                                                                             
 
-pip install wikipedia                                                                                                                                                             
+pip install wikipedia                                                                                                                                                        
 
-pip install translate                                                                                                                                                             
-pip install speedtest                                                                                                                                                             
+pip install translate                                                                                                                                                         
+
+pip install speedtest                                                                                                                                                     
+
 pip install urllib.request                       
-                                                                                                                                                             
+  
+  
