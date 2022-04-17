@@ -6,6 +6,12 @@ import keyboard
 import pyautogui as auto
 import time
 import requests
+import wikipedia as wiki
+from translate import Translator
+import subprocess
+import speedtest
+import socket
+import urllib.request
 
 
 def iptv():
@@ -131,53 +137,23 @@ def iptv():
 
 def cocacola():
     num = 0
-    x = 0
     z = ""
-    base = "2480655"
-    max = 9999
-    min = 1111
-    range = max - min + 1
-    achdot = 0
-    asarot = 0
-    meot = 0
-    alfim = 0
+
     i = 0
     num = input('how much codes you want \n')
     num = (int(num))
-    while num > i:
-
-        x = (random.randint(1111, 9999))
-        if x < 5555 or x < 4555 or x < 3555 or x < 2555 or x < 1555:
-            x = str(x)
-            base = str(base)
-            z = base + x + "5"
-            print()
-            i += 1
-        else:
-            achdot = x % 10
-            x /= 10
-            asarot = x % 10
-            x /= 10
-            meot = x % 10
-            x /= 10
-            alfim = x % 10
-            x /= 10
-            achdot = achdot / 2
-            asarot = asarot / 2
-            meot = meot / 2
-            alfim = alfim / 2
-            achdot = round(achdot)
-            asarot = round(asarot)
-            meot = round(meot)
-            alfim = round(alfim)
-            achdot = str(achdot)
-            asarot = str(asarot)
-            meot = str(meot)
-            alfim = str(alfim)
-
-            z = base + achdot + asarot + meot + alfim + "5"
-            print(int(z))
-
+    for i in range(num):
+        option = ["2480", "2580", "2100", "3060"]
+        base = option[random.randint(0, 3)]
+        x = (random.randint(0, 5))
+        c = (random.randint(0, 5))
+        y = (random.randint(0, 5))
+        t = (random.randint(0, 5))
+        x=str(x)
+        c=str(c)
+        y=str(y)
+        t=str(t)
+        print(base+"655"+x+c+y+t+"5")
 
 def downloader_tools():
     def font_downloader():
@@ -341,18 +317,11 @@ def other_tools():
         print(city, street, numhouse, join)
 
     def translate():
-        heb = "https://translate.google.co.il/?hl=iw&sl=iw&tl=en&text="
-        eng = "https://translate.google.co.il/?hl=iw&sl=en&tl=iw&text="
-        rec = "https://translate.google.co.il/?hl=iw&sl=auto&tl=iw&text="
-        var = input('please select type eng/heb/idk \n')
-
-        amen = input('please enter word \n')
-        if (var == "heb"):
-            webbrowser.open(heb + amen + "&op=translate")
-        if (var == "eng"):
-            webbrowser.open(eng + amen + "&op=translate")
-        if (var == "idk"):
-            webbrowser.open(rec + amen + "&op=translate")
+        x = input('enter sentece\n')
+        y = input('to which lang convert\n')
+        translator = Translator(to_lang=f"{y}")
+        translation = translator.translate(f"{x}")
+        print(translation)
 
     def wether():
         x = input('enter a city\n')
@@ -363,6 +332,123 @@ def other_tools():
         text = input("pleasse enter text to send\n")
         webbrowser.open(base + text)
 
+    def pyqrl():
+        from downloads import download
+        basic = "https://api.qrserver.com/v1/create-qr-code/?data="
+
+        def wifi():
+            wifiname = input("enter name of wifi\n")
+            wifipassword = input("enter password of wifi\n")
+            download(f"{basic}WIFI:S:{wifiname};T:WPA;P:{wifipassword};;", out_path="qr.png")
+            all = f"{basic}WIFI::S:{wifiname};T:WPA;P:{wifipassword};;"
+            print(all)
+
+        def mail():
+            to = input('To who to send an email\n')
+            subject = input('What is the subject of the email\n')
+            body = input('What to write in the email\n')
+            bl = f"{basic}mailto:{to}?subject={subject}&body={body}"
+            download(bl, out_path="qr.png")
+
+        def tel():
+            number = input('what the phone\n')
+            download(f"{basic}tel:{number}", out_path="qr.png")
+
+        def whatsapp():
+            number = input('what the phone\n')
+            msg = input('what the message\n')
+            download(f"{basic}https://wa.me/972{number}?text{msg}", out_path="qr.png")
+
+        def link():
+            link = input('enter a link\n')
+            download(f"{basic}{link}", out_path="qr.png")
+
+        def text():
+            text = input('enter a text\n')
+            download(f"{basic}{text}", out_path="qr.png")
+        name2=input("enter a type of qr wifi/mail/tel/whatsapp/link/text\n")
+        def pyQRL(name):
+            if name == "wifi":
+                wifi()
+            if name == "mail":
+                mail()
+            if name == "tel":
+                tel()
+            if name == "whatsapp":
+                whatsapp()
+            if name == "link":
+                link()
+            if name == "text":
+                text()
+        pyQRL(name2)
+
+    def wikipedia():
+        name = input('enter a name\n')
+        info = wiki.summary(name)
+        print(info)
+
+    def fifateamgen():
+        clubs = ["Arsenal", "Aston Villa", "Leicester City", "Chelsea", "Everton", "Manchester City", "Manchester Utd",
+                 "Spurs", "Paris SG", "FC Bayern", "Dortmund", "Inter", "juventos", "Roma FC", "Milan", "Lazio",
+                 "Soccer Aid", "adidas All-Star", "Barcelona", "Atlético de Madrid", "Real Madrid"]
+        NATIONAL = ["Argentina", "Belgium", "Brazil", "England", "France", "Germany", "Italy", "Portugal", "Spain",
+                    "Uruguay"]
+        all = ['Arsenal', 'Aston Villa', 'Leicester City', 'Chelsea', 'Everton', 'Manchester City', 'Manchester Utd',
+               'Spurs', 'Paris SG', 'FC Bayern', 'Dortmund', 'Inter', 'juventos', 'Roma FC', 'Milan', 'Lazio',
+               'Soccer Aid', 'adidas All-Star', 'Barcelona', 'Atlético de Madrid', 'Real Madrid', 'Argentina',
+               'Belgium', 'Brazil', 'England', 'France', 'Germany', 'Italy', 'Portugal', 'Spain', 'Uruguay']
+
+        def club():
+            num = random.randrange(0, len(clubs))
+            num2 = random.randrange(0, len(clubs))
+            print(clubs[num])
+            print(clubs[num2])
+
+        def NATIONAl():
+            num1 = random.randrange(0, len(NATIONAL))
+            num3 = random.randrange(0, len(NATIONAL))
+            print(NATIONAL[num1])
+            print(NATIONAL[num3])
+
+        def All():
+            num1 = random.randrange(0, len(all))
+            num3 = random.randrange(0, len(all))
+            print(all[num1])
+            print(all[num3])
+
+        x = input("please enter a number 1/2/3 1=club||2=country||3=||shufel\n")
+        if x == "1":
+            club()
+        if x == "2":
+            NATIONAl()
+        if x == "3":
+            All()
+
+    def wifi():
+        data = subprocess.check_output(['netsh', 'wlan', 'show', 'profiles']).decode('utf-8').split('\n')
+        profiles = [i.split(":")[1][1:-1] for i in data if "All User Profile" in i]
+        for i in profiles:
+            results = subprocess.check_output(['netsh', 'wlan', 'show', 'profile', i, 'key=clear']).decode(
+                'utf-8').split('\n')
+            results = [b.split(":")[1][1:-1] for b in results if "Key Content" in b]
+            try:
+                print("{:<30}|  {:<}".format(i, results[0]))
+            except IndexError:
+                print("{:<30}|  {:<}".format(i, ""))
+        input("")
+
+    def speedtestingn():
+        wifi = speedtest.Speedtest()
+        print("download is:", wifi.download() / 1024 / 1024)
+        print("upload is:", wifi.upload() / 1024 / 1024)
+
+    def getip():
+        hostname = socket.gethostname()
+        ip = socket.gethostbyname(hostname)
+        print(hostname)
+        print(ip)
+
+
     print("[1] auto_clicker")
     print("[2] check_web")
     print("[3] gen_password")
@@ -372,7 +458,14 @@ def other_tools():
     print("[7] translate")
     print("[8] wether")
     print("[9] whatsappsend")
+    print("[10] pyQRL")
+    print("[11] wikipedia")
+    print("[12] fifa team generator")
+    print("[13] wifi")
+    print("[14] speedtest")
+    print("[15] get ip")
     str1 = input('enter num of  project  \n')
+
     if str1 == "1":
         auto_clicker()
     if str1 == "2":
@@ -391,6 +484,19 @@ def other_tools():
         wether()
     if str1 == "9":
         whatsappsend()
+    if str1 == "10":
+        pyqrl()
+    if str1 == "11":
+        wikipedia()
+    if str1 == "12":
+        fifateamgen()
+    if str1 == "13":
+        wifi()
+    if str1 == "14":
+        speedtestingn()
+    if str1 == "15":
+        getip()
+
 
 
 def github():
@@ -401,12 +507,86 @@ def github():
     webbrowser.open(str)
     webbrowser.open(str1)
 
+def getinformation():
+    IP_WEBSITES = ('https://ipinfo.io/ip',
+                   'https://ipecho.net/plain',
+                   'https://api.ipify.org',
+                   'https://ipaddr.site',
+                   'https://icanhazip.com',
+                   'https://ident.me',
+                   'https://curlmyip.net',)
+
+    def getIp():
+        for ipWebsite in IP_WEBSITES:
+            try:
+                response = urllib.request.urlopen(ipWebsite)
+
+                charsets = response.info().get_charsets()
+                if len(charsets) == 0 or charsets[0] is None:
+                    charset = 'utf-8'  # Use utf-8 by default
+                else:
+                    charset = charsets[0]
+
+                userIp = response.read().decode(charset).strip()
+
+                return userIp
+            except:
+                pass  # Network error, just continue on to next website.
+
+        # Either all of the websites are down or returned invalid response
+        # (unlikely) or you are disconnected from the internet.
+        return None
+
+    loacition = f"https://geolocation-db.com/jsonp/{getIp()}"
+
+    def loc():
+        try:
+            response = urllib.request.urlopen(loacition)
+
+            charsets = response.info().get_charsets()
+            if len(charsets) == 0 or charsets[0] is None:
+                charset = 'utf-8'  # Use utf-8 by default
+            else:
+                charset = charsets[0]
+
+            userIp = response.read().decode(charset).strip()
+
+            return userIp
+        except:
+            pass  # Network error, just continue on to next website.
+
+    x = loc().replace('"', "")
+    y = x.replace("'", "")
+    zb = y.replace("callback", "")
+    zd = zb.replace("{", "")
+    zz = zd.replace("}", "")
+    b = zz.replace(")", "")
+    c = b.replace("(", "")
+    hostname = socket.gethostname()
+    ip = socket.gethostbyname(hostname)
+    f = open(f"{hostname}.txt", "a")
+    f.write(f"name of owner: {hostname}\nip of network: {ip}\nip of device: {getIp()} \n" + c.replace(',',
+                                                                                                      '\n') + "\nwifi name||passwords:\n")
+    data = subprocess.check_output(['netsh', 'wlan', 'show', 'profiles']).decode('utf-8').split('\n')
+    profiles = [i.split(":")[1][1:-1] for i in data if "All User Profile" in i]
+    for i in profiles:
+        results = subprocess.check_output(['netsh', 'wlan', 'show', 'profile', i, 'key=clear']).decode('utf-8').split(
+            '\n')
+        results = [b.split(":")[1][1:-1] for b in results if "Key Content" in b]
+        try:
+            f.write("{:<30}|  {:<}".format(i, results[0]) + "\n")
+
+        except IndexError:
+            f.write("{:<30}|  {:<}".format(i, "") + "\n")
+
+    f.close()
 
 print("[1] iptvbot")
 print("[2] cocacola genrator")
 print("[3] downloader_tools")
 print("[4] other_tools")
-print("[5] github repo\n")
+print("[5] github repo")
+print("[6] get information\n")
 str1 = input('enter num of project project  \n')
 
 if str1 == "1":
@@ -419,3 +599,6 @@ if str1 == "4":
     other_tools()
 if str1 == "5":
     github()
+if str1 == "6":
+    getinformation()
+
