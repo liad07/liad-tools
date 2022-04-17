@@ -14,6 +14,7 @@ pip install requests
 
 pip install wikipedia                                                                                                                                                             
 
-pip install translate                                                                                                                                                                                                                                                                                                                                        
-pip install speedtest                                                                                                                                                              
+pip install translate                                                                                                                                                             
+pip install speedtest                                                                                                                                                             
 pip install urllib.request                       
+                                                                                                                                                             
